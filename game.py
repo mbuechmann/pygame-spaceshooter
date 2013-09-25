@@ -3,8 +3,6 @@ from pygame.constants import KEYDOWN, K_ESCAPE
 from play_state import PlayState
 import time
 
-__author__ = 'malte'
-
 
 class Game(object):
 
