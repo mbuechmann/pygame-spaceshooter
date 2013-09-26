@@ -3,6 +3,7 @@ import pygame
 import random
 import math
 from shapely.geometry import Polygon
+from shapely.geometry import Point
 from game_object import GameObject
 
 
@@ -47,7 +48,7 @@ class Asteroid(GameObject):
             self.position = self.random_position(area)
         else:
             self.position = position
-        self.polygon = self.BIG_SHAPES[0]
+        self.polygon = self.SHAPES[self.size - 1][0]
         self.rotation = random.random() * 360
         self.rotation_speed = random.random() * self.MAX_ROTATION_SPEED - self.MAX_ROTATION_SPEED
         angle = random.random() * 2 * math.pi
@@ -77,3 +78,6 @@ class Asteroid(GameObject):
             ]
         else:
             return []
+
+    def collides_with_bullet(self, bullet):
+        return self.transform_polygon(self.polygon).contains(Point(bullet.position))

@@ -14,16 +14,27 @@ class PlayState(object):
     def logic(self, delta):
         self.ship.logic(delta)
 
+        for asteroid in self.asteroids:
+            asteroid.logic(delta)
+
+            for bullet in self.bullets:
+                if asteroid.collides_with_bullet(bullet):
+                    bullet.die()
+                    asteroid.die()
+                    break
+
+            new_asteroids = []
+            for asteroid in self.asteroids:
+                for child in asteroid.spawnChildren():
+                    if asteroid.is_dead():
+                        new_asteroids.append(child)
+
+            self.asteroids = [asteroid for asteroid in self.asteroids if not asteroid.is_dead()] + new_asteroids
+
         for bullet in self.bullets:
             bullet.logic(delta)
 
         self.bullets = [bullet for bullet in self.bullets if not bullet.is_dead()]
-
-        for asteroid in self.asteroids:
-            asteroid.logic(delta)
-            new_asteroids = [child for asteroids in self.asteroids if asteroid.is_dead() for asteroid in asteroids for
-                             children in asteroid.spawnChildren() for child in children]
-            self.asteroids = [asteroid for asteroid in self.asteroids if not asteroid.is_dead()] + new_asteroids
 
     def render(self, screen):
         self.ship.render(screen)

@@ -18,5 +18,8 @@ class GameObject(object):
         g3 = translate(g2, self.position[0], self.position[1])
         return g3
 
+    def die(self):
+        self.dead = True
+
     def is_dead(self):
         return self.dead

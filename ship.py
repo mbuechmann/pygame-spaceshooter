@@ -11,8 +11,8 @@ class Ship(GameObject):
 
     SHIP_SHAPE = Polygon([(0.0, -10.0), (5.0, 5.0), (0.0, 0.0), (-5.0, 5.0)])
     THRUSTER_SHAPE = LineString([(-3, 2), (0, 7), (3, 2)])
-    MAX_SPEED = 3
-    ACCELERATION = 4
+    MAX_SPEED = 100
+    ACCELERATION = 10
     ROTATION_SPEED = 180
     TTD = 3
 
