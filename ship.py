@@ -9,7 +9,7 @@ from shapely.geometry import LineString
 
 class Ship(GameObject):
 
-    SHIP_SHAPE = Polygon([(0.0, -10.0), (5.0, 5.0), (0.0, 0.0), (-5.0, 5.0)])
+    SHIP_SHAPE = LineString([(0.0, -10.0), (5.0, 5.0), (0.0, 0.0), (-5.0, 5.0)])
     THRUSTER_SHAPE = LineString([(-3, 2), (0, 7), (3, 2)])
     MAX_SPEED = 100
     ACCELERATION = 10
@@ -27,7 +27,7 @@ class Ship(GameObject):
         self.steering_right = False
 
     def render(self, screen):
-        points = list(self.transform_polygon(self.SHIP_SHAPE).exterior.coords)
+        points = list(self.transform_polygon(self.SHIP_SHAPE).coords)
         pygame.draw.lines(screen, (255, 255, 255), True, points)
         points = list(self.transform_polygon(self.THRUSTER_SHAPE).coords)
         if self.accelerating:
@@ -61,5 +61,5 @@ class Ship(GameObject):
         self.steering_right = value
 
     def shootBullet(self):
-        points = list(self.transform_polygon(self.SHIP_SHAPE).exterior.coords)[0]
+        points = list(self.transform_polygon(self.SHIP_SHAPE).coords)[0]
         return Bullet(self.area, points, self.rotation)

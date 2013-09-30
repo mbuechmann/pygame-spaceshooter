@@ -2,8 +2,7 @@ import numpy
 import pygame
 import random
 import math
-from shapely.geometry import Polygon
-from shapely.geometry import Point
+from shapely.geometry import LineString
 from game_object import GameObject
 
 
@@ -11,28 +10,28 @@ class Asteroid(GameObject):
     SPEED = 0.5
     MAX_ROTATION_SPEED = 260
     BIG_SHAPES = [
-        Polygon([
+        LineString([
             (-18, 0), (-15, 10), (-3, 12), (0, 20), (7, 16), (15, 14), (20, 0), (18, -3), (15, -10), (8, -12), (0, -15),
             (-2, -12), (-12, -10)
         ])
     ]
     MEDIUM_SHAPES = [
-        Polygon([
+        LineString([
             (-9, 0), (-15, 5), (-13, 9), (-5, 15), (0, 11), (5, 14), (10, 10), (15, -2), (5, -15), (-12, -14), (-15, -5)
         ]),
-        Polygon([
+        LineString([
             (-14, 5), (-6, 14), (-1, 10), (1, 13), (5, 10), (10, 10), (14, -3), (7, -8), (0, -11), (-4, -13),
             (-12, -12), (-10, -3)
         ])
     ]
     SMALL_SHAPES = [
-        Polygon([
+        LineString([
             (-10, 0), (-5, 1), (-3, 8), (5, 8), (8, -2), (1, -10), (-6, -9)
         ]),
-        Polygon([
+        LineString([
             (-10, 8), (-7, 10), (5, 5), (9, 1), (3, -8), (-5, -5), (-7, 4)
         ]),
-        Polygon([
+        LineString([
             (-6, 0), (-8, 4), (-3, 8), (0, 5), (4, 6), (6, 2), (4, -1), (2, -8), (-5, -7)
         ])
     ]
@@ -55,7 +54,7 @@ class Asteroid(GameObject):
         self.speed = (math.cos(angle) * self.SPEED, math.sin(angle) * self.SPEED)
 
     def render(self, screen):
-        points = list(self.transform_polygon(self.polygon).exterior.coords)
+        points = list(self.transform_polygon(self.polygon)  .coords)
         pygame.draw.lines(screen, (255, 255, 255), True, points)
 
     def logic(self, delta):
@@ -80,4 +79,5 @@ class Asteroid(GameObject):
             return []
 
     def collides_with_bullet(self, bullet):
-        return self.transform_polygon(self.polygon).contains(Point(bullet.position))
+        bullet_path = LineString((bullet.last_position, bullet.position))
+        return self.transform_polygon(self.polygon).intersects(bullet_path)
