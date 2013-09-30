@@ -3,7 +3,6 @@ import math
 import numpy
 from bullet import Bullet
 from game_object import GameObject
-from shapely.geometry import Polygon
 from shapely.geometry import LineString
 
 
@@ -60,6 +59,6 @@ class Ship(GameObject):
     def steer_right(self, value):
         self.steering_right = value
 
-    def shootBullet(self):
+    def shoot_bullet(self):
         points = list(self.transform_polygon(self.SHIP_SHAPE).coords)[0]
         return Bullet(self.area, points, self.rotation)

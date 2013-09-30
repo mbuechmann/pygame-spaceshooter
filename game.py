@@ -11,10 +11,10 @@ class Game(object):
     def __init__(self):
         self.screen = pygame.display.set_mode(self.AREA)
         self.current_state = PlayState(self.AREA)
+        self.running = True
 
     def run(self):
         last_time = time.time()
-        self.running = True
 
         while self.running:
             now = time.time()

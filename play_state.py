@@ -25,7 +25,7 @@ class PlayState(object):
 
             new_asteroids = []
             for asteroid in self.asteroids:
-                for child in asteroid.spawnChildren():
+                for child in asteroid.spawn_children():
                     if asteroid.is_dead():
                         new_asteroids.append(child)
 
@@ -52,4 +52,4 @@ class PlayState(object):
             if event.key == K_RIGHT:
                 self.ship.steer_right(event.type == KEYDOWN)
             if event.type == KEYDOWN and event.key == K_SPACE:
-                self.bullets.append(self.ship.shootBullet())
+                self.bullets.append(self.ship.shoot_bullet())

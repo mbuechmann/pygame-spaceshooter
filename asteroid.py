@@ -70,7 +70,7 @@ class Asteroid(GameObject):
             y = random.random() * area[1]
         return x, y
 
-    def spawnChildren(self):
+    def spawn_children(self):
         if self.size > 1:
             return [
                 Asteroid(self.area, self.size - 1, self.position), Asteroid(self.area, self.size - 1, self.position)
