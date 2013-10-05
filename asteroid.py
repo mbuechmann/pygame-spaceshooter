@@ -7,7 +7,7 @@ from game_object import GameObject
 
 
 class Asteroid(GameObject):
-    SPEED = 0.5
+    SPEED = 100
     MAX_ROTATION_SPEED = 260
     BIG_SHAPES = [
         LineString([
@@ -60,7 +60,7 @@ class Asteroid(GameObject):
     def logic(self, delta):
         self.rotation = (self.rotation + self.rotation_speed * delta) % 360
         self.position = numpy.add(self.position, numpy.multiply(self.speed, delta))
-        self.wrap_position()
+        self.move(delta)
 
     def random_position(self, area):
         x = area[0] / 2

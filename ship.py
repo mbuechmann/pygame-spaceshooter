@@ -10,8 +10,8 @@ class Ship(GameObject):
 
     SHIP_SHAPE = LineString([(0.0, -10.0), (5.0, 5.0), (0.0, 0.0), (-5.0, 5.0)])
     THRUSTER_SHAPE = LineString([(-3, 2), (0, 7), (3, 2)])
-    MAX_SPEED = 100
-    ACCELERATION = 10
+    MAX_SPEED = 400
+    ACCELERATION = 500
     ROTATION_SPEED = 180
     TTD = 3
 
@@ -48,7 +48,7 @@ class Ship(GameObject):
             self.rotation -= self.ROTATION_SPEED * delta
         self.rotation %= 360
 
-        self.wrap_position()
+        self.move(delta)
 
     def accelerate(self, value):
         self.accelerating = value

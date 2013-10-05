@@ -24,7 +24,7 @@ class Bullet(GameObject):
         self.last_position = self.position
         self.speed = (delta * self.vx, delta * self.vy)
         self.position = numpy.add(self.position, self.speed)
-        self.wrap_position()
+        self.move(delta)
         self.ttl -= delta
 
     def is_dead(self):
