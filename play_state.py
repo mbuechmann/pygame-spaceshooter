@@ -5,6 +5,7 @@ from ship import Ship
 
 
 class PlayState(object):
+    FONT_LOCATION = 'assets/Vectorb.ttf'
     FONT_Y = 10
 
     def __init__(self, area):
@@ -14,7 +15,7 @@ class PlayState(object):
         self.asteroids = []
         self.asteroids.append(Asteroid(self.area))
         self.score = 0
-        self.score_font = pygame.font.Font('assets/Vectorb.ttf', 45)
+        self.score_font = pygame.font.Font(self.FONT_LOCATION, 45)
 
     def logic(self, delta):
         self.ship.logic(delta)
