@@ -9,6 +9,7 @@ class Game(object):
     AREA = (800, 800)
 
     def __init__(self):
+        pygame.init()
         self.screen = pygame.display.set_mode(self.AREA)
         self.current_state = PlayState(self.AREA)
         self.running = True
