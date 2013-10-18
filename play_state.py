@@ -11,12 +11,12 @@ class PlayState(object):
     LIVES_ORIGIN = (20, 24)
     LIVES_OFFSET = (20, 0)
 
-    def __init__(self, area):
-        self.area = area
-        self.ship = Ship(area)
+    def __init__(self, game):
+        self.game = game
+        self.ship = Ship(game.AREA)
         self.bullets = []
         self.asteroids = []
-        self.asteroids.append(Asteroid(self.area))
+        self.asteroids.append(Asteroid(game.AREA))
         self.score = 0
         self.level = 1
         self.lives = 3
@@ -82,7 +82,7 @@ class PlayState(object):
                 if self.ship is not None:
                     self.bullets.append(self.ship.shoot_bullet())
                 else:
-                    self.ship = Ship(self.area)
+                    self.ship = Ship(self.game.AREA)
 
     def _render_score(self, screen):
         string = '%d' % self.score

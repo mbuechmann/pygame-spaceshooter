@@ -11,7 +11,7 @@ class Game(object):
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode(self.AREA)
-        self.current_state = PlayState(self.AREA)
+        self.current_state = PlayState(self)
         self.running = True
 
     def run(self):
