@@ -53,6 +53,7 @@ class PlayState(object):
                         self.ship.die()
                         self.lives -= 1
                         self.ship = None
+                        break
 
         self.bullets = [bullet for bullet in self.bullets if not bullet.is_dead()]
 
