@@ -2,6 +2,7 @@ import pygame
 import numpy
 from pygame.constants import KEYDOWN, K_UP, KEYUP, K_LEFT, K_RIGHT, K_SPACE
 from asteroid import Asteroid
+import game_over_state
 from ship import Ship
 
 
@@ -51,8 +52,10 @@ class PlayState(object):
                 for asteroid in self.asteroids:
                     if asteroid.collides_with_ship(self.ship):
                         self.ship.die()
-                        self.lives -= 1
                         self.ship = None
+                        self.lives -= 1
+                        if self.lives == 0:
+                            self.game.set_current_state(game_over_state.GameOverState(self.game))
                         break
 
         self.bullets = [bullet for bullet in self.bullets if not bullet.is_dead()]

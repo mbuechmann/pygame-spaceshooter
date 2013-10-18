@@ -1,6 +1,6 @@
 import pygame
 from pygame.constants import KEYDOWN, K_ESCAPE
-from play_state import PlayState
+from game_over_state import GameOverState
 import time
 
 
@@ -11,8 +11,11 @@ class Game(object):
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode(self.AREA)
-        self.current_state = PlayState(self)
+        self.current_state = GameOverState(self)
         self.running = True
+
+    def set_current_state(self, state):
+        self.current_state = state
 
     def run(self):
         last_time = time.time()
