@@ -83,3 +83,6 @@ class Asteroid(GameObject):
     def collides_with_bullet(self, bullet):
         bullet_path = LineString((bullet.last_position, bullet.position))
         return self.transform_polygon(self.polygon).intersects(bullet_path)
+
+    def collides_with_ship(self, ship):
+        return self.transform_polygon(self.polygon).intersects(ship.transform_polygon(ship.SHIP_SHAPE))
