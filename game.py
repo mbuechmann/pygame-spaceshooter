@@ -7,6 +7,9 @@ import time
 class Game(object):
 
     AREA = (800, 800)
+    LARGE_FONT_SIZE = 45
+    MEDIUM_FONT_SIZE = 20
+    SMALL_FONT_SIZE = 15
 
     def __init__(self):
         pygame.init()

@@ -21,7 +21,7 @@ class PlayState(object):
         self.score = 0
         self.level = 1
         self.lives = 3
-        self.font = pygame.font.Font(self.FONT_LOCATION, 20)
+        self.font = pygame.font.Font(self.FONT_LOCATION, game.MEDIUM_FONT_SIZE)
 
     def logic(self, delta):
         if self.ship is not None:
