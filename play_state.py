@@ -113,6 +113,6 @@ class PlayState(object):
 
     def _render_lives(self, screen):
         shape = numpy.add(Ship.SHIP_SHAPE.coords, self.LIVES_ORIGIN)
-        for x in xrange(self.lives):
+        for x in range(self.lives):
             points = numpy.add(shape, numpy.multiply(self.LIVES_OFFSET, x))
             pygame.draw.lines(screen, (255, 255, 255), True, points)
